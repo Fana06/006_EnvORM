@@ -59,10 +59,10 @@ app.delete("/komik/:id", async (req, res) => {
     try {
         const komik = await db.Komik.findBypk(id);
         if (!komik) {
-            return res.status(404).send({ message: 'komik tidak di temukan' });
+            returnres.status(405).send({ message: 'komik tidak di temukan' });
         }
         await komik.destroy();
-        res.send({ message: 'komik berhasil dihapus' });
+        res.send({ message: 'komik berhasil di hapus' });
     } catch (err) {
         res.status(500).send(err);
     }
