@@ -41,7 +41,7 @@ app.put("/komik/:id", async (req, res) => {
     const data = req.body;
 
     try {
-        const komik = await db.Komik.findBypk(id);
+        const komik = await db.Komik.findByPk(id);
         if (!komik) {
             return res.status(404).send({ message: 'komik tidak di temukan' });
         }
@@ -57,9 +57,9 @@ app.put("/komik/:id", async (req, res) => {
 app.delete("/komik/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const komik = await db.Komik.findBypk(id);
+        const komik = await db.Komik.findByPk(id);
         if (!komik) {
-            returnres.status(405).send({ message: 'komik tidak di temukan' });
+            return res.status(404).send({ message: 'komik tidak di temukan' });
         }
         await komik.destroy();
         res.send({ message: 'komik berhasil di hapus' });
